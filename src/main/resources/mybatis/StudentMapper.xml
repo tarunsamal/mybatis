@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.tarun.mybatis.dao.StudentMapper">
+
+    <resultMap id="StudentResultMap" type="com.tarun.mybatis.domain.Student">
+
+        <id column="id" property="id" />
+
+        <result column="name" property="name" />
+
+        <result column="email" property="email" />
+
+    </resultMap>
+
+    <select id="getAllStudent" resultMap="StudentResultMap">
+
+        select id, name, email from Student
+
+    </select>
+
+    <select id="getStudentbyId" resultMap="StudentResultMap">
+
+        select id, name, email from Student WHERE id=#{id}
+
+    </select>
+
+    <insert id="insertStudent" parameterType="com.tarun.mybatis.domain.Student" useGeneratedKeys="true" keyProperty="id">
+
+        insert into Student(name,email) values(#{name},#{email})
+
+    </insert>
+    
+    <delete id="deleteStudentbyId" >
+
+        delete from Student where id = #{id}
+
+    </delete>
+
+</mapper>
